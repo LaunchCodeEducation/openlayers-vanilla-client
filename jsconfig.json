@@ -1,0 +1,4 @@
+{
+  // intellisense for openlayers (from TypeScript Types file)
+  "include": ["./ol-types.d.ts"]
+}
