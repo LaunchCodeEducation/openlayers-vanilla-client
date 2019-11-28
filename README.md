@@ -61,15 +61,15 @@ Once you have written your code you can view it in your browser by serving the `
 
 To serve the client you can use a Python HTTP server or the VSCode LiveServer extension.
 
-> after starting the HTTP server open your browser to http://localhost:3000
-
-### Serve with LiveServer extension
+### Serve with LiveServer
 
 > right click the `src/index.html` file and select `Open with LiveServer`
 
+> your browser should open automatically, otherwise go to http://localhost:5500/src/index.html
+
 ### Serve with Python
 
-> Python 3
+> Python 3+
 
 ```sh
 $ python -m http.server -d src/ 3000
@@ -78,10 +78,46 @@ $ python -m http.server -d src/ 3000
 > Python 2
 
 ```sh
-$ cd src/
-
-$ python -m SimpleHTTPServer 3000
+$ cd src/ && python -m SimpleHTTPServer 3000
 ```
+
+> after starting the HTTP server open your browser to http://localhost:3000
+
+## Debugging with Firefox
+
+In order to use the VSCode debugger with Firefox you have to install the `Debugger for Firefox` extension.
+
+> go to extensions > search "Debugger for Firefox" > install
+
+The project already has a debugger configuration in `.vscode/launch.json` set up to work with [the Python server](#serve-with-python).
+
+> if [using LiveServer](#serve-with-liveserver) replace `.vscode/launch.json` with the contents below
+
+`.vscode/launch.json`
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch localhost debugger",
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "url": "http://localhost:5500/src/index.html",
+      "webRoot": "${workspaceFolder}/src/"
+    }
+  ]
+}
+```
+
+### Use the Debugger
+
+> **make sure you are [serving the client](#serving-locally) before launching the debugger!**
+
+Once the configuration is set up and you are serving the client you can launch the debugger.
+
+> from the taskbar (bottom of window) click "Launch localhost debugger"
 
 ## Deployment
 
