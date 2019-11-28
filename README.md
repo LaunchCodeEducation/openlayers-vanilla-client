@@ -6,9 +6,15 @@ OpenLayers (`V4.6.5`) is preinstalled and linked in debug format. You can source
 
 # Usage
 
-Just write your [JavaScript module files](#using-javascript-modules) and serve the `index.html`. To serve the client you can use a Python HTTP server or the VSCode LiveServer extension.
+> fork this repo then clone it to begin development
 
-The `index.js` file is set up as the entrypoint to the application. You can import module bits and initialize the JavaScript in this file.
+```sh
+$ git clone <your fork URL>
+```
+
+Then write your [JavaScript module files](#using-javascript-modules) and serve the `index.html`. The `index.js` file is linked and set up to be used as the entrypoint to the application. You can import module bits and initialize the JavaScript in this file without having to link any other modules
+
+To serve the client you can use a Python HTTP server or the VSCode LiveServer extension.
 
 ## Serving Locally
 
@@ -36,21 +42,23 @@ $ python -m SimpleHTTPServer 3000
 
 ## Deployment
 
-> Copy the `src/` directory to your HTTP server web directory
+No other build tools or scripts are needed to deploy the application.
+
+> copy the `src/` directory to your HTTP server web directory, S3 bucket or other hosting location
 
 # Using JavaScript Modules
 
-Normally all scripts loaded in the browser share a common global space for any namespaces declared in the scripts. This causes complications of using either dense single script files or working around delicate `<script>` element linking order. Not to mention namespace conflicts in the global scope.
+Normally all scripts loaded in the browser share a common global scope for any namespaces declared in the scripts. This causes complications of conflicting names, dense single script files or working around delicate `<script>` element linking order.
 
 > a namespace is a general term used to describe any uniquely named variable, function or class that has been declared in a given scope (a block or global)
 
-JavaScript modules let you have distinct "global" scopes and explicitly state what should be shared between other modules files. Using modules can help break up giant script files into more readable, organized and portable pieces. In other words modules help make your code more...modular!
+JavaScript modules do not share a global scope. Instead they have a module scope that is independent of any other module. You can explicitly state what should be shared between other modules files. Using modules can help break up giant script files into more readable, organized and portable pieces. In other words modules help make your code more...modular!
 
-> modules revolve around control of private and shared namespaces
+> modules revolve around control of private and shared scopes for namespaces
 
 > one module exports the namespaces of its choice while another can decide which of those to import and use
 
-JavaScript modules use the `<script type="module">` attribute to alert the browser that it should parse `import` and `export` statements. Modules behave in `strict` mode and have a number of other features and convenient behaviors. Basic usage of `import` and `export` are described in this guide. Use the resources below to dig deeper into how modules work:
+JavaScript modules use the `<script type="module">` attribute to alert the browser that it should parse `import` and `export` statements. Modules behave in `strict` mode and have a number of other features and convenient behaviors. Practical usage of modules and their `import` and `export` statements are described in this guide. Use the resources below to dig deeper into how modules work:
 
 - [MDN Modules Guide (high level)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 - [JavaScript.info (in depth)](https://javascript.info/modules-intro)
