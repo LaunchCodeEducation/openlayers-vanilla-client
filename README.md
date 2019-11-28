@@ -340,14 +340,14 @@ import theDefaultExport, {
 > ~75% smaller in size in exchange for debugging support
 
 ```sh
-$ curl https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.css -o src/ol.css
+$ curl https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.css -o src/openlayers/ol.css
 
-$ curl https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.js -o src/ol.js
+$ curl https://cdnjs.cloudflare.com/ajax/libs/openlayers/4.6.5/ol.js -o src/openlayers/ol.js
 ```
 
 ## Using the OpenLayers CDN
 
-Replace the local links in `index.html` with the CDN links for the CSS and JavaScript.
+Replace the local links in `index.html` with the CDN links for the CSS and JavaScript. You can then remove the `src/openlayers/` directory from your project.
 
 > V4.6.5: debug (non-minified) - 411KB
 
