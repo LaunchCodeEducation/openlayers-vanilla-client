@@ -2,21 +2,21 @@
 
 Starter files for building a standalone OpenLayers client using otherwise vanilla JavaScript. Does not require webpack or any other bundling tool. Only uses native JavaScript modules to simplify development. Provides intellisense type completion in VSCode for the OpenLayers library.
 
-OpenLayers (`V4.6.5`) is preinstalled and linked in debug format. You can source it over CDN or in minified formats if preferred [instructions below](#using-the-openLayers-cdn).
+OpenLayers (`V4.6.5`) is preinstalled and linked in debug format. You can source it over CDN or in minified formats if preferred [instructions below](#openlayers-alternate-sourcing).
 
 # Usage
 
-> fork this repo then clone it to begin development
+> fork this repo and clone it to begin development
 
 ```sh
 $ git clone <your fork URL>
 ```
 
-Then write your [JavaScript module files](#using-javascript-modules) and serve the `index.html`. The `index.js` file is linked and set up to be used as the entrypoint to the application. You can import module bits and initialize the JavaScript in this file without having to link any other modules
-
-To serve the client you can use a Python HTTP server or the VSCode LiveServer extension.
+Then write your [JavaScript module files](#using-javascript-modules) and serve the `index.html`. The `index.js` file is linked and set up to be used as the entrypoint to the application. You can import module bits and initialize the JavaScript in this file without having to link any other modules.
 
 ## Serving Locally
+
+To serve the client you can use a Python HTTP server or the VSCode LiveServer extension.
 
 > after starting the HTTP server open your browser to http://localhost:3000
 
@@ -110,7 +110,7 @@ Named exports can be used for a module to expose specific named features. **You 
 
 > named exports retain their namespace when imported in another module
 
-There are two ways to use named exports:
+There are several ways to use named exports:
 
 > inline export and declaration
 
