@@ -6,13 +6,56 @@ OpenLayers (`V4.6.5`) is preinstalled and linked in debug format. You can source
 
 # Usage
 
+## Setup
+
 > fork this repo and clone it to begin development
 
 ```sh
-$ git clone <your fork URL>
+$ git clone <your fork URL> [path/to/project-name]
 ```
 
-Then write your [JavaScript module files](#using-javascript-modules) and serve the `index.html`. The `index.js` file is linked and set up to be used as the entrypoint to the application. You can import module bits and initialize the JavaScript in this file without having to link any other modules.
+> the last part is where the repo will be cloned into (if left off then the directory will be called "openlayers-vanilla-client/" )
+
+```sh
+# an example to clone into "my-openlayers-project" in my ~/codes/projects/ directory
+$ git clone https://github.com/the-vampiire/openlayers-vanilla-client.git ~/codes/projects/my-openlayers-project
+```
+
+After cloning you can open the project in VSCode using the `code` shortcut
+
+> provide the path that the repo was cloned into
+
+```sh
+$ code <path/to/repo>
+
+# from example above
+$ code ~/codes/projects/my-openlayers-project
+```
+
+> if you get an error that `code` command is not found
+
+You need to set up the VSCode CLI. You can find the [documentation here](https://code.visualstudio.com/docs/editor/command-line). This will only take a minute.
+
+## Development
+
+> directory structure
+
+```
+jsconfig.json <-- adds VSCode intellisense using OpenLayers Type definitions
+ol-types.d.ts <-- the Type definitions of OpenLayers
+src/ <-- all your work goes in here
+  index.html <-- prelinked with OpenLayers and the index.js module
+  index.js <-- entrypoint module where any initialization can take place
+  utils.js <-- a sample module to separate utils from initialization
+  ol.css <-- OpenLayers CSS library (in debug format)
+  ol.js <-- OpenLayers JS library (in debug format)
+```
+
+Write your [JavaScript module files](#using-javascript-modules) using the [export](#exporting) and [import](#importing) syntax.
+
+The `index.js` module is linked in the HTML and set up to be used as the entrypoint to the application. You can import from other modules and initialize the JavaScript in this file. There is no need to link any other modules in the HTML.
+
+Once you have written your code you can view it in your browser by serving the `index.html` file.
 
 ## Serving Locally
 
@@ -42,7 +85,7 @@ $ python -m SimpleHTTPServer 3000
 
 ## Deployment
 
-No other build tools or scripts are needed to deploy the application.
+No other build tools or scripts are needed to deploy the application!
 
 > copy the `src/` directory to your HTTP server web directory, S3 bucket or other hosting location
 
@@ -147,7 +190,7 @@ Importing from another module uses the `import from ""` syntax. The `from` keywo
 
 > Note: browser modules must include the `.js` extension unlike NodeJS
 
-When importing a default export the namespace it is given is defined by the importing module
+When importing a default export the **namespace it is given is defined by the importing module**
 
 > importing a default export
 
@@ -163,6 +206,93 @@ export default class MyClass {}
 // notice the namespace
 
 import AClass from "./exporting-module.js";
+```
+
+When importing named exports the namespaces are preserved
+
+> importing named exports
+
+`src/exporting-module.js`
+
+```js
+const myObject = {};
+const myVariable = "";
+
+export const anotherNamedExport = "";
+
+export { myObject, myVariable };
+```
+
+`src/importing-module.js`
+
+```js
+// the namespaces are preserved
+import {
+  myObject,
+  myVariable,
+  anotherNamedExport,
+} from "./exporting-module.js";
+```
+
+> the importing module can decide which named exports it wants to import
+
+```js
+// selecting only one named export
+import { myObject } from "./exporting-module.js";
+```
+
+If there are naming conflicts an alias can be provided using the `as` keyword.
+
+> importing named exports with an alias
+
+> the alias will be used within the scope of the importing module
+
+`src/exporting-module.js`
+
+```js
+const myObject = {};
+const myVariable = "";
+
+export const anotherNamedExport = "";
+
+export { myObject, myVariable };
+```
+
+`src/importing-module.js`
+
+```js
+// the namespaces can be overwritten with a local alias
+import { myObject as myCustomName, myVariable } from "./exporting-module.js";
+```
+
+Finally both a default export as well as named exports can be imported in a single statement
+
+> importing default and named exports
+
+`src/exporting-module.js`
+
+```js
+const myObject = {};
+const myVariable = "";
+function myFunction() {}
+
+export const anotherNamedExport = "";
+
+export { myObject, myVariable };
+
+export default myFunction;
+```
+
+`src/importing-module.js`
+
+```js
+// the default export is always named by the importing module
+import theDefaultExport, {
+  // the namespaces for named exports are preserved
+  myObject,
+  myVariable as someAlias, // unlessed aliased
+  anotherNamedExport,
+} from "./exporting-module.js";
 ```
 
 # OpenLayers Alternate Sourcing
