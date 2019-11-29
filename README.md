@@ -117,6 +117,12 @@ The project already has a debugger configuration in `.vscode/launch.json` set up
 
 Once the configuration is set up and you are serving the client you can launch the debugger.
 
+The first time you start the debugger you have to use the debugger tab in the sidebar (bug icon)
+
+> opene the debugger sidebar and click the green play button
+
+After the first time the debugger can be started from the taskbar.
+
 > from the taskbar (bottom of window) click "Launch localhost debugger"
 
 ## Deployment
