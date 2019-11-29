@@ -144,11 +144,9 @@ JavaScript modules use the `<script type="module">` attribute to alert the brows
 
 ## Exporting
 
-In order to import a namespace in a module it must first be exported by another module.
+In order to import a feature (general term for an export) it must first be exported by another module.
 
 > a module can export a single default export, multiple named exports or a combination of the two
-
-> any valid namespace can be exported although some depend on the type of export
 
 > namespaces are declared using any declaration keyword from the list below
 
@@ -164,11 +162,13 @@ function
 
 A default export represents a single encapsulation of the main feature of a module. You can only have **one default export per module**.
 
-> the default export does not retain its namespace when it gets imported (this will make more sense in the import section)
+> the default export does not retain its namespace (if applicable) when it gets imported
 
-There are two cases for default exports
+> this will make more sense in the import section
 
-> the default export must be defined before the export statement
+There are three cases for default exports
+
+> the default export can be defined before the export statement
 
 ```js
 // any valid namespace, function used as an example
@@ -177,10 +177,24 @@ function myFunc() {}
 export default myFunc;
 ```
 
-> the `class` keyword is special and can be declared and exported inline
+> the default export can be declared inline
+
+> **note: this only works for expressions, functions and classes**
 
 ```js
 export default class ClassName {}
+export default function() {}
+```
+
+> the default export can be a (valid) inline expression
+
+> **note: the default export will be the evaluation of the inline expression**
+
+```js
+export default 1 === 2; // evaluates and exports: false
+
+// arrow (lambda) functions are considered expressions!
+export default () => {};
 ```
 
 ### Named Exports
