@@ -8,17 +8,32 @@ OpenLayers (`V4.6.5`) is preinstalled and linked in debug format. You can source
 
 ## Setup
 
-> fork this repo and clone it to begin development
+> clone this repo
 
 ```sh
-$ git clone <your fork URL> [path/to/project-name]
+$ git clone https://github.com/LaunchCodeEducation/openlayers-vanilla-client.git [path/to/project-name]
 ```
 
-> the last part is where the repo will be cloned into (if left off then the directory will be called "openlayers-vanilla-client/" )
+> the last part is where the repo will be cloned into
+
+> **if left off then the directory will default to `openlayers-vanilla-client/` in the CWD**
 
 ```sh
 # an example to clone into "my-openlayers-project" in my ~/codes/projects/ directory
-$ git clone https://github.com/the-vampiire/openlayers-vanilla-client.git ~/codes/projects/my-openlayers-project
+$ git clone https://github.com/LaunchCodeEducation/openlayers-vanilla-client.git ~/codes/projects/my-openlayers-project
+```
+
+Now create an repo under your own account with the name of your project **(do not initialize with any content)**
+
+> copy the URL of the new personal repo
+
+> replace the remote of the cloned repo with the URL of your personal repo
+
+```sh
+$ git remote remove origin && git remote add origin <personal repo URL>
+
+# example from above
+$ git remote remove origin && git remote add origin https://github.com/the-vampiire/my-openlayers-project.git
 ```
 
 After cloning you can open the project in VSCode using the `code` shortcut
