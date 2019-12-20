@@ -1,3 +1,3 @@
-import { } from './utils.js';
+import {} from "./utils.js";
 
-document.addEventListener('DOMContentLoaded', () => { });
+document.addEventListener("DOMContentLoaded", () => {});
