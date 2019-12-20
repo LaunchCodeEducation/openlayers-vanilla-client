@@ -4,6 +4,18 @@ Starter files for building a standalone OpenLayers client using otherwise vanill
 
 OpenLayers (`V4.6.5`) is preinstalled and linked in debug format. You can source it over CDN or in minified formats if preferred [instructions below](#openlayers-alternate-sourcing).
 
+## Using NPM
+
+If you are interested in using NPM and gaining support for ESLint (code style linting) and Prettify (automatic code formatting) check out the [npm branch](https://github.com/LaunchCodeEducation/openlayers-vanilla-client/tree/npm).
+
+## Migrating From Single-Host
+
+If you are currently using a single-host application and want to migrate to a multi-host architecture you can follow the [Multi-Host Migration Guide]('').
+
+A single-host application means that both your frontend (HTML, CSS and JavaScript) and backend (Java/Spring, Node/Express, Python/Flask etc) are served from the same application server. Both the client (frontend) code and the application (backend) endpoints are accessed from the same domain.
+
+For example, if you are writing a Spring application that serves its client code from the `src/main/resources/static` directory then you would access both the client and the API endpoints from the default `http://localhost:8080` domain. In a multi-host design each codebase would be served on its own port such as the client on `localhost:3000` and the API on `locahost:8080`.
+
 # Usage
 
 ## Setup
