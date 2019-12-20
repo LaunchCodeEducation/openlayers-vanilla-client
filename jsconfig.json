@@ -1,4 +1,8 @@
 {
   // intellisense for openlayers (from TypeScript Types file)
-  "include": ["./ol-types.d.ts", "./src/**/*.js"]
+  "include": ["./ol-types.d.ts", "./src/**/*.js"],
+  // intellisense for ES2018 javascript syntax
+  "compilerOptions": {
+    "target": "es2018"
+  }
 }
